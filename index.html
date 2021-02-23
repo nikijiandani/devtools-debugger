@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Devtools debugger demo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="index.css">
+<script>
+  function getData() {
+    fetch("https://ghibliapi.herokuapp.com/films")
+      .then((response) => response.json())
+      .then((data) => {
+        let output = '<h2>List of ghibli movies</h2>';
+        output += '<ul>';
+          data.forEach(function(movie) {
+            output += `
+              <li>
+                ${movie.title}
+              </li>
+            `
+          })
+        output += '</ul>'
+        document.getElementById('list').innerHTML = output;
+      });
+  }
+</script>
+<body>
+  <h1>Devtools Workshop</h1>
+  <button onclick="getData()">Get my data!</button>
+  <div id='list'></div>
+</body>
+</html>
+
